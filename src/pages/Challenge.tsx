@@ -13,7 +13,14 @@ function Challenge() {
   const doneCount = challenges.filter((c) =>
     progress.challenges.includes(c.id),
   ).length;
-  const dayIndex = Math.floor(Date.now() / 86400000) % challenges.length;
+  const [dayIndex] = useState(() => {
+    if (challenges.length === 0) return 0;
+
+    const today = Math.floor(Date.now() / 86_400_000);
+
+    return today % challenges.length;
+  });
+
   const featured = challenges[dayIndex];
 
   return (
