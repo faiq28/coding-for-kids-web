@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800;900&display=swap");
 @import "tailwindcss";
 
 :root {
@@ -8,6 +9,31 @@ body {
   margin: 0;
   min-width: 320px;
 }
+
+@keyframes float {
+  0%,100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-15px);
+  }
+}
+
+@keyframes pulse-soft {
+
+  0%,100%{
+    transform: scale(1);
+    opacity: .6;
+  }
+
+  50%{
+    transform: scale(1.05);
+    opacity: .9;
+  }
+
+}
+
 /* :root {
   --text: #6b6375;
   --text-h: #08060d;
@@ -119,3 +145,93 @@ code {
   padding: 4px 8px;
   background: var(--code-bg);
 } */
+
+/* ===== CodeQuest additions ===== */
+
+@theme {
+  --font-sans: "Nunito", system-ui, Avenir, Helvetica, Arial, sans-serif;
+  --font-display: "Fredoka", "Nunito", system-ui, sans-serif;
+}
+
+@layer base {
+  *, ::before, ::after {
+    border-color: #e2e8f0;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    background: #FAFAF8;
+    color: #182033;
+  }
+
+  h1, h2, h3 {
+    font-family: var(--font-display);
+  }
+
+  button:not(:disabled) {
+    cursor: pointer;
+  }
+
+  :focus-visible {
+    outline: 3px solid #5B5BF7;
+    outline-offset: 2px;
+  }
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-4px); }
+  75% { transform: translateX(4px); }
+}
+
+@keyframes pop {
+  0% { transform: scale(.6); opacity: 0; }
+  70% { transform: scale(1.1); }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Refined responsive design system */
+:root { font-synthesis: none; text-rendering: optimizeLegibility; -webkit-font-smoothing: antialiased; }
+html { scroll-padding-top: 6rem; }
+body { overflow-x: clip; }
+img, svg { max-width: 100%; }
+.hero-atmosphere { background: radial-gradient(ellipse 52% 60% at 85% 38%, rgba(199,210,254,.48), transparent 75%), radial-gradient(ellipse 40% 55% at 5% 85%, rgba(254,240,138,.26), transparent 75%); }
+.hero-mascot { isolation: isolate; }
+.hero-mascot::before { content: ''; position: absolute; width: min(85%, 420px); aspect-ratio: 1; border: 1px dashed rgba(99,102,241,.24); border-radius: 50%; transform: rotate(-15deg) scale(1.12); pointer-events: none; }
+.journey-tile { box-shadow: 0 5px 24px rgba(33,42,78,.035); }
+@media (max-width: 420px) { .hero-mascot > div > div.absolute:not(:first-child) { font-size: .75rem; padding: .45rem .7rem; } }
+@media (prefers-reduced-motion: reduce) { .hero-mascot::before { transform: none; } }
+
+/* Lightweight 2.5D depth and scroll reveal, without a WebGL render loop. */
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    .scroll-reveal {
+      animation: quest-reveal linear both;
+      animation-timeline: view();
+      animation-range: entry 0% cover 25%;
+    }
+  }
+}
+@keyframes quest-reveal {
+  from { opacity: .35; transform: translateY(26px) scale(.97); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; }
+}
+
+/* CodeQuest illustrated assets: consistent proportions and restrained hover. */
+@media (prefers-reduced-motion: reduce) { .journey-tile img { transition: none !important; transform: none !important; } }

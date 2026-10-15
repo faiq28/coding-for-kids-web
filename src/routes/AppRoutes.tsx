@@ -9,6 +9,7 @@ import Games from "../pages/Games";
 import Challenge from "../pages/Challenge";
 import Achievement from "../pages/Achievement";
 import Profile from "../pages/Profile";
+import NotFound from "../pages/NotFound";
 
 function AppRoutes() {
   return (
@@ -22,6 +23,7 @@ function AppRoutes() {
           <Route path="/challenge" element={<Challenge />} />
           <Route path="/achievement" element={<Achievement />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
     </BrowserRouter>
